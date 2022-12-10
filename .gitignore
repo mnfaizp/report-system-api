@@ -1,0 +1,8 @@
+# Ignore ENV file
+.env
+
+# ignore node modles
+node_modules
+
+# ignore test.json but okay to example
+config/database/test.json

@@ -1,0 +1,41 @@
+{
+  "name": "report-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "start:dev": "nodemon src/app.js",
+    "test": "jest --setupFiles dotenv/config",
+    "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config",
+    "migrate": "node-pg-migrate",
+    "migrate:test": "node-pg-migrate -f config/database/test.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnfaizp/report-system-api.git"
+  },
+  "author": "mnfaizp",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mnfaizp/report-system-api/issues"
+  },
+  "homepage": "https://github.com/mnfaizp/report-system-api#readme",
+  "dependencies": {
+    "bcrpyt": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "nanoid": "^3.3.4",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.4",
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^29.3.1",
+    "node-pg-migrate": "^6.2.2",
+    "nodemon": "^2.0.20"
+  }
+}
