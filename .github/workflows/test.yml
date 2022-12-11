@@ -17,7 +17,11 @@ jobs:
         image: postgres
         # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: 12345678
+          POSTGRES_DB: app_test
+        port:
+          - 5432:5432
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -38,19 +42,17 @@ jobs:
       - name: Connect to PostgreSQL
         # Runs a script that creates a PostgreSQL table
         run: npm run migrate up
-
         env:
-          POSTGRES_PASSWORD: postgres
-          PGHOST_TEST: localhost
-          PGUSER_TEST: postgres
-          PGDATABASE_TEST: postgres
-          PGPASSWORD_TEST: postgres
-          PGPORT_TEST: 5432
-          PGHOST: localhost
-          PGUSER: postgres
-          PGDATABASE: postgres
-          PGPASSWORD: postgres
+          PGHOST: postgres
+          PGHOST_TEST: postgres
+          PGUSER: root
+          PGUSER_TEST: root
+          PGPASSWORD: 12345678
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE: app_test
+          PGDATABASE_TEST: app_test
           PGPORT: 5432
+          PGPORT_TEST: 5432
         
       - name: Run test
         run: npm run test
