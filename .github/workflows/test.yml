@@ -40,16 +40,10 @@ jobs:
         # the table with data, and then retrieves the data.
         run: npm run migrate up
         # Environment variables used by the `client.js` script to create a new PostgreSQL table.
+        run: npm run test
         env:
-          # The hostname used to communicate with the PostgreSQL service container
-          PGHOST: postgres
-          # The default PostgreSQL port
-          PGPORT: 5432
-          PGUSER: postgres
-          PGDATABASE: healthcenter
-          PGPASSWORD: root
           PGHOST_TEST: postgres
           PGUSER_TEST: postgres
-          PGDATABASE_TEST: healthcenter_test
-          PGPASSWORD_TEST: root
+          PGDATABASE_TEST: postgres
+          PGPASSWORD_TEST: postgres
           PGPORT_TEST: 5432
