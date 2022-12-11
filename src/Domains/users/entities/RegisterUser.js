@@ -2,19 +2,19 @@ class RegisterUser {
   constructor(payload) {
     this._verifyPaylod(payload);
 
-    const { id, username, fullname } = payload;
+    const { password, username, fullname } = payload;
 
-    this.id = id;
+    this.password = password;
     this.username = username;
     this.fullname = fullname;
   }
 
-  _verifyPaylod({ username, id, fullname }) {
-    if (!username || !id || !fullname) {
+  _verifyPaylod({ username, password, fullname }) {
+    if (!username || !password || !fullname) {
       throw new Error('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
-    if (typeof username !== 'string' || typeof id !== 'string' || typeof fullname !== 'string') {
+    if (typeof username !== 'string' || typeof password !== 'string' || typeof fullname !== 'string') {
       throw new Error('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
 
