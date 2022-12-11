@@ -37,7 +37,7 @@ jobs:
 
       - name: Connect to PostgreSQL
         # Runs a script that creates a PostgreSQL table
-        run: npm run migrate:test up
+        run: npm run migrate up
 
         env:
           PGHOST_TEST: postgres
