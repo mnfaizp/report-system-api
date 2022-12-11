@@ -1,8 +1,9 @@
 # Ignore ENV file
 .env
 
-# ignore node modles
+# ignore temp or asset
 node_modules
+coverage
 
 # ignore test.json but okay to example
 config/database/test.json
