@@ -6,4 +6,4 @@ node_modules
 coverage
 
 # ignore test.json but okay to example
-config/database/test.json
+# config/database/test.json
