@@ -19,6 +19,7 @@ jobs:
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: 12345678
+          POSTGRES_PORT: 5432
           POSTGRES_DB: app_test
         ports:
           - 5432:5432
@@ -39,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Connect to PostgreSQL
+      - name: Migrate table
         # Runs a script that creates a PostgreSQL table
         run: npm run migrate up
         env:
@@ -56,3 +57,14 @@ jobs:
         
       - name: Run test
         run: npm run test
+        env:
+          PGHOST: postgres
+          PGHOST_TEST: postgres
+          PGUSER: root
+          PGUSER_TEST: root
+          PGPASSWORD: 12345678
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE: app_test
+          PGDATABASE_TEST: app_test
+          PGPORT: 5432
+          PGPORT_TEST: 5432
