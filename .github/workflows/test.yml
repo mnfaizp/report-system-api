@@ -55,8 +55,8 @@ jobs:
           PGPORT: 5432
           PGPORT_TEST: 5432
         
-      - name: Run test
-        run: npm run test
+      - name: Run Domains Test
+        run: npm run test:domains
         env:
           PGHOST: postgres
           PGHOST_TEST: postgres
@@ -67,4 +67,49 @@ jobs:
           PGDATABASE: app_test
           PGDATABASE_TEST: app_test
           PGPORT: 5432
+          PGPORT_TEST: 5432
+
+      - name: Run Commons Test
+        run: npm run test:commons
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Commons Test
+        run: npm run test:commons
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Applications Test
+        run: npm run test:applications
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Infrastructures Test
+        run: npm run test:infrastructures
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Interfaces Test
+        run: npm run test:interfaces
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
           PGPORT_TEST: 5432

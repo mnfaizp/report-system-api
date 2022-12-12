@@ -7,6 +7,11 @@
     "start": "node src/app.js",
     "start:dev": "nodemon src/app.js",
     "test": "jest --setupFiles dotenv/config",
+    "test:applications": "jest ./src/Applications --setupFiles dotenv/config",
+    "test:domains": "jest ./src/Domains --setupFiles dotenv/config",
+    "test:commons": "jest ./src/Commons --setupFiles dotenv/config",
+    "test:infrastructres": "jest ./src/Infrastructures --setupFiles dotenv/config",
+    "test:interfaces": "jest ./src/Interfaces --setupFiles dotenv/config",
     "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config",
     "migrate": "node-pg-migrate",
     "migrate:test": "node-pg-migrate -f config/database/test.json"
