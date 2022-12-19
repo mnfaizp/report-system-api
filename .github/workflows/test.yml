@@ -1,0 +1,115 @@
+name: Test
+on: push
+
+jobs:
+  # Label of the container job
+  container-job:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+    # Docker Hub image that `container-job` executes in
+    container: node:19
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: 12345678
+          POSTGRES_PORT: 5432
+          POSTGRES_DB: app_test
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Performs a clean installation of all dependencies in the `package.json` file
+      # For more information, see https://docs.npmjs.com/cli/ci.html
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Migrate table
+        # Runs a script that creates a PostgreSQL table
+        run: npm run migrate up
+        env:
+          PGHOST: postgres
+          PGHOST_TEST: postgres
+          PGUSER: root
+          PGUSER_TEST: root
+          PGPASSWORD: 12345678
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE: app_test
+          PGDATABASE_TEST: app_test
+          PGPORT: 5432
+          PGPORT_TEST: 5432
+        
+      - name: Run Domains Test
+        run: npm run test:domains
+        env:
+          PGHOST: postgres
+          PGHOST_TEST: postgres
+          PGUSER: root
+          PGUSER_TEST: root
+          PGPASSWORD: 12345678
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE: app_test
+          PGDATABASE_TEST: app_test
+          PGPORT: 5432
+          PGPORT_TEST: 5432
+
+      - name: Run Commons Test
+        run: npm run test:commons
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Commons Test
+        run: npm run test:commons
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Applications Test
+        run: npm run test:applications
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Infrastructures Test
+        run: npm run test:infrastructures
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
+
+      - name: Run Interfaces Test
+        run: npm run test:interfaces
+        env:
+          PGHOST_TEST: postgres
+          PGUSER_TEST: root
+          PGPASSWORD_TEST: 12345678
+          PGDATABASE_TEST: app_test
+          PGPORT_TEST: 5432
