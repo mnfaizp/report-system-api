@@ -33,7 +33,8 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^3.3.4",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "@types/jest": "^29.2.4",
